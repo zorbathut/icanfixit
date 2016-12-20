@@ -14,6 +14,9 @@ namespace ICanFixIt
     {
         public static void Destroy(this Building building, DestroyMode mode = DestroyMode.Vanish)
         {
+            // cache this because it goes away from the destructor
+            Map map = building.Map;
+
             // We need to call ThingWithComps.Destroy() directly, which is really high on the list of things you're never supposed to be able to do
             // but, I mean
             // since when have I let that stop me
@@ -24,13 +27,13 @@ namespace ICanFixIt
             InstallBlueprintUtility.CancelBlueprintsFor(building);
             if (mode == DestroyMode.Deconstruct)
             {
-                SoundDef.Named("BuildingDeconstructed").PlayOneShot(building.Position);
+                SoundDef.Named("BuildingDeconstructed").PlayOneShot(new TargetInfo(building.Position, map, false));
             }
 
             // Okay!
             if (mode == DestroyMode.Kill && building.Faction == Faction.OfPlayer)
             {
-                GenConstruct.PlaceBlueprintForBuild(building.def, building.Position, building.Rotation, Faction.OfPlayer, building.Stuff);
+                GenConstruct.PlaceBlueprintForBuild(building.def, building.Position, map, building.Rotation, Faction.OfPlayer, building.Stuff);
             }
         }
     }

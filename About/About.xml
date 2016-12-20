@@ -4,5 +4,5 @@
   <author>ZorbaTHut</author>
   <url>https://github.com/zorbathut/icanfixit</url>
   <description>Automatically places blueprints for destroyed player-owned buildings.</description>
-  <targetVersion>0.15.0</targetVersion>
+  <targetVersion>0.16.0</targetVersion>
 </ModMetaData>
