@@ -79,6 +79,10 @@ Rimworld "I Can Fix It!" mod
 
 ". . ."
 
+"And trapped us in this closet."
+
+". . ."
+
 "Maybe that would have been a good idea, boss?"
 
 ". . . Yes, Sparkles. That would have been a good idea."
