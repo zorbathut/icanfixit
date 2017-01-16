@@ -31,7 +31,7 @@ namespace ICanFixIt
             }
 
             // Okay!
-            if (mode == DestroyMode.Kill && building.Faction == Faction.OfPlayer)
+            if (mode == DestroyMode.Kill && building.Faction == Faction.OfPlayer && building.def != null && building.def.blueprintDef != null)
             {
                 GenConstruct.PlaceBlueprintForBuild(building.def, building.Position, map, building.Rotation, Faction.OfPlayer, building.Stuff);
             }
