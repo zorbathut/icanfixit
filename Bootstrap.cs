@@ -1,31 +1,14 @@
-﻿using CommunityCoreLibrary_ICanFixIt;
-using System;
+﻿using Harmony;
 using System.Reflection;
-using UnityEngine;
 using Verse;
 
 namespace ICanFixIt
 {
-    class Bootstrap : Def
+    class ICanFixIt : Mod
     {
-        public string ModName;
-
-        static Bootstrap()
+        public ICanFixIt(ModContentPack mcp) : base(mcp)
         {
-            try
-            {
-                MethodInfo method1 = typeof(Verse.Building).GetMethod("Destroy", BindingFlags.Instance | BindingFlags.Public);
-                MethodInfo method2 = typeof(Building_Detour).GetMethod("Destroy", BindingFlags.Static | BindingFlags.Public);
-                if (!Detours.TryDetourFromTo(method1, method2))
-                {
-                    Log.Error("EVERYTHING IS BROKEN");
-                    return;
-                }
-            }
-            catch (Exception)
-            {
-                Log.Error("something is seriously wrong");
-            }
+            HarmonyInstance.Create("com.mandible.rimworld.icanfixit").PatchAll(Assembly.GetExecutingAssembly());
         }
     }
 }
