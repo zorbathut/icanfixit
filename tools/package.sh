@@ -1,10 +1,8 @@
-rm -rf Assemblies
-
 dirname=${PWD##*/}
 projname=${dirname%%_Dev}
 
 if [ -f "$projname.sln" ]; then
-  rm -rf Assemblies
+  rm -f Assemblies/$projname.dll
   
   tools/build.bat $projname
 
